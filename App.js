@@ -1,11 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { PostsPage } from './src/pages/PostsPage';
+
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <PostsPage />
+      <Text> Blog Post Skeleton </Text>
     </View>
   );
 }

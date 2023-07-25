@@ -2,6 +2,9 @@
 // TODO DB: DB is updated on form submission
 import {Text, View, StyleSheet, TextInput, Pressable} from 'react-native';
 import React from 'react';
+import {db} from '../utils/Firebase'
+import firebase from 'firebase'
+
 export const PostForm = (props) => {
 
   const [content, onChangeContent] = React.useState("");
@@ -44,11 +47,10 @@ function submitBlogPost(title, content){
     title: title,
     body: content,
     author: author,
-    date: {} // TODO add firebase compatible date
+    date: firebase.firestore.Timestamp.now()
   }
 
-  console.log("connect me to firebase") 
-  // TODO: Connect to Firebase
+  db.collection("posts").add(post).then((docRef) => console.log("new post: " + docRef.id)).catch((error) => console.error("error adding post: ", error))
 
 }
 

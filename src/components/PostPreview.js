@@ -13,7 +13,7 @@ export const PostPreview = (props) => {
         <Text style={styles.header}> {props.details.title} </Text>
         <View style={styles.row}>
             <Text style={styles.details}>{props.details.author}</Text>
-            <Text style={styles.details}>{props.details.date}</Text>
+            <Text style={styles.details}>{props.details.date.toDate().toDateString()}</Text>
           </View>
         <Text> {getBodyPreview(props.details.body)} </Text>
       </Card>

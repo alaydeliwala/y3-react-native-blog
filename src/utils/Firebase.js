@@ -1,6 +1,6 @@
 import firebase from "firebase"
 
-// TODO: Replace this with config from Firebase
+// TODO add firebase credentials
 const firebaseConfig = {};
 
 function initFirebase(){

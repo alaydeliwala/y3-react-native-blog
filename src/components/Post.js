@@ -1,27 +1,33 @@
-// TODO: Create a card that can show some preview about the Post
-// TODO NAV: Navigate to a Post page with full post visible
-
 import {Card} from 'react-native-paper';
-import {Text, StyleSheet, TouchableOpacity, View, Pressable} from 'react-native';
+import {Text, StyleSheet, View, Pressable} from 'react-native';
+import {db} from '../utils/Firebase';
+import { useNavigation } from '@react-navigation/native';
 
 export const Post = (props) => {
+  const navigation = useNavigation();
   return(
       <Card style={styles.previewCard}>
         <Text style={styles.header}> {props.details.title} </Text>
         <View style={styles.row}>
             <Text style={styles.details}>{props.details.author}</Text>
-            <Text style={styles.details}>{props.details.date}</Text>
+            <Text style={styles.details}>{props.details.date.toDate().toDateString()}</Text>
           </View>
         <Text> {props.details.body} </Text>
-        <Pressable style={styles.button} onPress={() => {deleteBlogPost(props.details)}}>
+        <Pressable style={styles.button} onPress={() => {deleteBlogPost(props.details.id, navigation)}}>
           <Text style={styles.buttonText}>Delete Post</Text>
         </Pressable>
       </Card>
   )
 }
 
-function deleteBlogPost(details){
-  // TODO: Implement delete function w/ Firebase
+function deleteBlogPost(id, navigation){
+  db.collection("posts").doc(id).delete().then(() => {
+    console.log("Document successfully deleted!");
+    navigation.goBack();
+    
+  }).catch((error) => {
+    console.error("Error removing document: ", error);
+  });
 }
 
 const styles = StyleSheet.create({

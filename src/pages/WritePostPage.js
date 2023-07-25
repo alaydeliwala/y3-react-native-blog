@@ -1,16 +1,17 @@
 // TODO: Create a page with a form to submit a new Post
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Card } from 'react-native-paper';
 import { PostForm } from '../components/PostForm';
+
 export const WritePostPage = () => {
 
-return(
-  <View>
-  <Card style={styles.card}>
-    <PostForm/>
-    </Card>
-  </View>
-)
+  return(
+    <ScrollView>
+      <Card style={styles.card}>
+        <PostForm/>
+      </Card>
+    </ScrollView>
+  )
 }
 
 const styles = StyleSheet.create({
